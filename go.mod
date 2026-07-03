@@ -3,7 +3,7 @@ module github.com/jamesstocktonj1/dbplexer
 go 1.24.1
 
 require (
-	github.com/jamesstocktonj1/wit v0.1.1
+	github.com/jamesstocktonj1/wit v0.1.2
 	github.com/spf13/cobra v1.10.2
 	github.com/stretchr/testify v1.11.1
 )

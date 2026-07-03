@@ -1,12 +1,28 @@
 package generator
 
-import "github.com/jamesstocktonj1/wit"
+import (
+	"os"
+
+	"github.com/jamesstocktonj1/wit"
+)
 
 const (
 	DefaultWorldName = "shim"
 	DefaultNamespace = "dbplexer"
 	DefaultPackage   = "shim"
 )
+
+func GenerateWit(pkg wit.Package, names []string, witPath string) error {
+	witGen := generateWitFromDatabaseNames(pkg, names)
+
+	f, err := os.Create(witPath)
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+
+	return wit.NewEncoder(f).Encode(witGen)
+}
 
 func generateWitFromDatabaseNames(pkg wit.Package, names []string) wit.Wit {
 	imports := []wit.Importable{}
